@@ -97,7 +97,7 @@ function Navbar() {
             </NavLink>
 
             <NavLink
-              to="/invoices"
+              to="/templates"
               className={({ isActive }) =>
                 `rounded-lg px-4 py-3 ${
                   isActive

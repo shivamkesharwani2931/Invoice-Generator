@@ -29,7 +29,7 @@ export const Hero = () =>   {
               Create your invoice
             </button>
 
-            <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-md">
+            <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-md hover:shadow-blue-500 hover:text-blue-500">
               <FaThLarge />
               Explore templates
             </button>
