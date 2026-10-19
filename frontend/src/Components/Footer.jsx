@@ -1,21 +1,12 @@
 import { Link } from "react-router-dom";
-import {
-  FaFileInvoice,
-  FaGithub,
-  FaLinkedinIn,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaFileInvoice, FaArrowRight } from "react-icons/fa";
 
 function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="border-t border-gray-200 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-
         {/* Footer top section */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-
           {/* Brand information */}
           <div>
             <Link to="/" className="mb-4 inline-flex items-center gap-2">
@@ -46,13 +37,21 @@ function Footer() {
                   Dashboard
                 </Link>
               </li>
+
               <li>
-                <Link to="/invoices" className="transition hover:text-indigo-600">
+                <Link
+                  to="/invoices"
+                  className="transition hover:text-indigo-600"
+                >
                   All Invoices
                 </Link>
               </li>
+
               <li>
-                <Link to="/create-invoice" className="transition hover:text-indigo-600">
+                <Link
+                  to="/create-invoice"
+                  className="transition hover:text-indigo-600"
+                >
                   Create Invoice
                 </Link>
               </li>
@@ -67,17 +66,28 @@ function Footer() {
 
             <ul className="space-y-3 text-sm text-gray-600">
               <li>
-                <Link to="/about" className="transition hover:text-indigo-600">
+                <Link
+                  to="/about"
+                  className="transition hover:text-indigo-600"
+                >
                   About Us
                 </Link>
               </li>
+
               <li>
-                <Link to="/help" className="transition hover:text-indigo-600">
+                <Link
+                  to="/help"
+                  className="transition hover:text-indigo-600"
+                >
                   Help Center
                 </Link>
               </li>
+
               <li>
-                <Link to="/privacy" className="transition hover:text-indigo-600">
+                <Link
+                  to="/privacy"
+                  className="transition hover:text-indigo-600"
+                >
                   Privacy Policy
                 </Link>
               </li>
@@ -101,35 +111,6 @@ function Footer() {
               Create Invoice
               <FaArrowRight />
             </Link>
-          </div>
-        </div>
-
-        {/* Bottom section */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-gray-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-center text-sm text-gray-500 sm:text-left">
-            © {currentYear} InvoicePro. All rights reserved.
-          </p>
-
-          <div className="flex items-center justify-center gap-4">
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 ring-1 ring-gray-200 transition hover:bg-indigo-600 hover:text-white"
-            >
-              <FaGithub />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 ring-1 ring-gray-200 transition hover:bg-indigo-600 hover:text-white"
-            >
-              <FaLinkedinIn />
-            </a>
           </div>
         </div>
       </div>
