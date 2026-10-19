@@ -1,7 +1,7 @@
-import {Hero} from "../Components/Hero"
-import {Benefits} from "../Components/Benefits"
-import {WorkFlow} from "../Components/WorkFlow"
-import {CTA} from "../Components/CTAsection"
+import {Hero} from "../Sections/Hero"
+import {Benefits} from "../Sections/Benefits"
+import {WorkFlow} from "../Sections/WorkFlow"
+import {CTA} from "../Sections/CTAsection"
 export const Home = () => {
     return (
         <div>
