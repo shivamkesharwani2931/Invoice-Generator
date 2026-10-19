@@ -30,31 +30,36 @@ function Navbar() {
         {/* Desktop navigation */}
         <div className="hidden items-center gap-8 md:flex">
           <NavLink to="/" end className={navLinkClass}>
-            Dashboard
+            Home
           </NavLink>
 
-          <NavLink to="/invoices" className={navLinkClass}>
-            Invoices
-          </NavLink>
-
-          <NavLink to="/create-invoice" className={navLinkClass}>
-            Create Invoice
+          <NavLink to="/templates" className={navLinkClass}>
+            Templates
           </NavLink>
 
           <NavLink to="/about" className={navLinkClass}>
             About
           </NavLink>
+
+          <NavLink to="/contact" className={navLinkClass}>
+            Contact
+          </NavLink>
         </div>
 
         {/* Desktop action button */}
-        <div className="hidden md:block">
-          <Link
-            to="/create-invoice"
-            className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white shadow-sm transition duration-200 hover:bg-indigo-700 hover:shadow-md"
-          >
-            + New Invoice
-          </Link>
-        </div>
+       
+<div className="flex items-center gap-4">
+  <NavLink to="/contact" className={navLinkClass}>
+    Login
+  </NavLink>
+
+  <Link
+    to="/signup"
+    className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition duration-200 hover:bg-indigo-700 hover:shadow-md shadow-lg "
+  >
+    Get Started
+  </Link>
+</div>
 
         {/* Mobile menu button */}
         <button
@@ -88,7 +93,7 @@ function Navbar() {
               }
               onClick={() => setMenuOpen(false)}
             >
-              Dashboard
+              Home
             </NavLink>
 
             <NavLink
@@ -102,8 +107,16 @@ function Navbar() {
               }
               onClick={() => setMenuOpen(false)}
             >
-              Invoices
+              Template
             </NavLink>
+
+            <Link
+              to="/create-invoice"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
+            >
+             Login
+            </Link>
 
             <NavLink
               to="/create-invoice"
@@ -116,7 +129,7 @@ function Navbar() {
               }
               onClick={() => setMenuOpen(false)}
             >
-              Create Invoice
+             About
             </NavLink>
 
             <NavLink
@@ -130,7 +143,7 @@ function Navbar() {
               }
               onClick={() => setMenuOpen(false)}
             >
-              About
+              Contact
             </NavLink>
 
             <Link
@@ -138,7 +151,14 @@ function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
             >
-              + New Invoice
+             Login
+            </Link>
+            <Link
+              to="/create-invoice"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
+            >
+             Get Started
             </Link>
           </div>
         </div>
