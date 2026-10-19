@@ -49,7 +49,7 @@ function Navbar() {
         {/* Desktop action button */}
        
 <div className="flex items-center gap-4">
-  <NavLink to="/contact" className={navLinkClass}>
+  <NavLink to="/login" className={navLinkClass}>
     Login
   </NavLink>
 
@@ -111,7 +111,7 @@ function Navbar() {
             </NavLink>
 
             <Link
-              to="/create-invoice"
+              to="/login"
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
             >
@@ -119,7 +119,7 @@ function Navbar() {
             </Link>
 
             <NavLink
-              to="/create-invoice"
+              to="/about"
               className={({ isActive }) =>
                 `rounded-lg px-4 py-3 ${
                   isActive
@@ -133,7 +133,7 @@ function Navbar() {
             </NavLink>
 
             <NavLink
-              to="/about"
+              to="/contact"
               className={({ isActive }) =>
                 `rounded-lg px-4 py-3 ${
                   isActive
@@ -147,14 +147,14 @@ function Navbar() {
             </NavLink>
 
             <Link
-              to="/create-invoice"
+              to="/login"
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
             >
              Login
             </Link>
             <Link
-              to="/create-invoice"
+              to="/signup"
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-lg bg-indigo-600 px-4 py-3 text-center font-semibold text-white transition hover:bg-indigo-700"
             >
