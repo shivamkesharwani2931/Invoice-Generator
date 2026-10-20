@@ -30,12 +30,12 @@ export const About = () => {
     ];
     return (
             <>
-        <header className="flex  flex-col items-center py-25 border-b border-gray-300">
+        <section className="flex  flex-col items-center py-25 border-b border-gray-300">
             <p className="font-bold text-blue-700 text-sm">ABOUT INVOICEFLOW</p>
             <h1 className="text-5xl mt-5">More time for your work.</h1>
             <h1 className="text-5xl mt-2">Less time on paperwork.</h1>
             <p className="mt-6 text-gray-600">We believe getting paid should be the simplest part of running a business.</p>
-        </header>
+        </section>
         <section className="grid grid-cols-2 px-20 py-35 bg-gray-100">
             <div className="">
                 <p className="font-bold text-blue-700">OUR MISSION</p>
