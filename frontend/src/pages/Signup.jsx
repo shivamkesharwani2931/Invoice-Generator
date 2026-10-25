@@ -41,7 +41,7 @@ export const Signup = () => {
   return (
     <div className="min-h-screen w-full bg-white lg:grid lg:grid-cols-[45%_55%]">
       {/* LEFT PANEL */}
-      <section className="relative flex min-h-[500px] flex-col overflow-hidden bg-gradient-to-br from-[#151d30] via-[#17264d] to-[#2452bd] px-6 py-8 text-white sm:px-10 lg:min-h-screen lg:px-[9.3%] lg:py-9">
+      <section className="relative flex min-h-125 flex-col overflow-hidden bg-linear-to-br from-[#151d30] via-[#17264d] to-[#2452bd] px-6 py-8 text-white sm:px-10 lg:min-h-screen lg:px-[9.3%] lg:py-9">
         {/* Logo */}
         <Link to="/" className="flex w-fit items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#5138ff]">
@@ -67,7 +67,7 @@ export const Signup = () => {
         </Link>
 
         {/* Promotional Content */}
-        <div className="my-auto max-w-[600px] py-16 lg:py-20">
+        <div className="my-auto max-w-150 py-16 lg:py-20">
           <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-2 text-xs font-bold tracking-wide text-blue-100 sm:text-sm">
             <svg
               viewBox="0 0 24 24"
@@ -89,7 +89,7 @@ export const Signup = () => {
             Turn your work into a professional invoice.
           </h1>
 
-          <p className="mb-9 max-w-[540px] text-base leading-7 text-blue-100 sm:text-lg">
+          <p className="mb-9 max-w-135 text-base leading-7 text-blue-100 sm:text-lg">
             Join thousands of independent professionals who save time and get
             paid faster.
           </p>
@@ -153,8 +153,8 @@ export const Signup = () => {
       </section>
 
       {/* RIGHT SIGNUP PANEL */}
-      <section className="flex min-h-[650px] items-center justify-center bg-white px-6 py-10 sm:px-10 lg:min-h-screen lg:px-12 lg:py-8">
-        <div className="w-full max-w-[435px]">
+      <section className="flex min-h-162.5 items-center justify-center bg-white px-6 py-10 sm:px-10 lg:min-h-screen lg:px-12 lg:py-8">
+        <div className="w-full max-w-108.75">
           {/* Page Icon */}
           <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[#2864f0]">
             <svg
@@ -200,7 +200,7 @@ export const Signup = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                className="h-[51px] w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
+                className="h-12.75, w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
               />
             </div>
 
@@ -222,7 +222,7 @@ export const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-[51px] w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
+                className="h-12.75 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
               />
             </div>
 
@@ -246,7 +246,7 @@ export const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   minLength={8}
                   required
-                  className="h-[51px] w-full rounded-xl border border-slate-200 bg-white px-4 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
+                  className="h-12.750 w-full rounded-xl border border-slate-200 bg-white px-4 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
                 />
 
                 <button
@@ -310,7 +310,7 @@ export const Signup = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   minLength={8}
                   required
-                  className="h-[51px] w-full rounded-xl border border-slate-200 bg-white px-4 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
+                  className="h-12.75 w-full rounded-xl border border-slate-200 bg-white px-4 pr-12 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#2864f0] focus:ring-4 focus:ring-blue-100"
                 />
 
                 <button
@@ -363,7 +363,7 @@ export const Signup = () => {
             {/* Create Account Button */}
             <button
               type="submit"
-              className="flex h-[51px] w-full items-center justify-center rounded-xl bg-[#2864f0] text-base font-semibold text-white shadow-[0_8px_20px_rgba(40,100,240,0.2)] transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 active:scale-[0.99]"
+              className="flex h-12.75 w-full items-center justify-center rounded-xl bg-[#2864f0] text-base font-semibold text-white shadow-[0_8px_20px_rgba(40,100,240,0.2)] transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 active:scale-[0.99]"
             >
               Create free account
             </button>
