@@ -712,3 +712,229 @@ textarea {
     padding: 24px;
   }
 }
+
+
+
+/* BUSINESS INVOICE TEMPLATE */
+
+.business-template {
+  width: 100%;
+  max-width: 794px;
+  min-height: 1123px;
+  margin: 0 auto;
+  padding: 48px;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #253247;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.business-template * {
+  box-sizing: border-box;
+}
+
+.business-template p {
+  margin: 3px 0;
+  overflow-wrap: anywhere;
+}
+
+.business-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.business-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 55%;
+}
+
+.business-brand h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #142c4e;
+  overflow-wrap: anywhere;
+}
+
+.business-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.business-invoice-heading {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.business-label {
+  display: block;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.business-invoice-heading h1 {
+  margin: 4px 0 12px;
+  color: #142c4e;
+  font-size: 24px;
+}
+
+.business-divider {
+  height: 3px;
+  background: #142c4e;
+  margin: 28px 0;
+}
+
+.business-billing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.business-billing h3 {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #142c4e;
+}
+
+.business-items {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.business-items table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.business-items th {
+  padding: 12px 8px;
+  background: #142c4e;
+  color: #ffffff;
+  font-size: 11px;
+  text-align: left;
+}
+
+.business-items th:first-child {
+  width: 42%;
+}
+
+.business-items th:nth-child(2) {
+  width: 12%;
+}
+
+.business-items th:nth-child(3) {
+  width: 23%;
+}
+
+.business-items th:nth-child(4) {
+  width: 23%;
+}
+
+.business-items th:not(:first-child),
+.business-items td:not(:first-child) {
+  text-align: right;
+}
+
+.business-items td {
+  padding: 13px 8px;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-wrap: anywhere;
+}
+
+.business-summary {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.business-totals {
+  width: 300px;
+  max-width: 100%;
+}
+
+.business-totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.business-grand-total {
+  margin-top: 8px;
+  padding: 15px 12px !important;
+  background: #142c4e;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.business-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.business-bottom h3 {
+  margin: 0 0 12px;
+  color: #142c4e;
+  font-size: 14px;
+}
+
+.business-footer {
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 2px solid #142c4e;
+  text-align: center;
+  color: #64748b;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .business-template {
+    padding: 24px;
+    min-height: auto;
+  }
+
+  .business-header {
+    flex-direction: column;
+  }
+
+  .business-brand {
+    max-width: 100%;
+  }
+
+  .business-invoice-heading {
+    text-align: left;
+  }
+
+  .business-billing,
+  .business-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .business-items th,
+  .business-items td {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+}
+
+@media print {
+  .business-template {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+}
