@@ -1,12 +1,5 @@
 
-const templateOptions = [
-  { id: "modern", name: "Modern" },
-  { id: "classic", name: "Classic" },
-  { id: "minimal", name: "Minimal" },
-  { id: "business", name: "Business" },
-  { id: "creative", name: "Creative" },
-  { id: "elegant", name: "Elegant" },
-];
+
 
 const inputClass =
   "w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100";
@@ -23,8 +16,6 @@ const formatCurrency = (value) =>
 export default function InvoiceForm({
   invoice,
   setInvoice,
-  template,
-  setTemplate,
 }) {
   const updateField = (field, value) => {
     setInvoice((prev) => ({
@@ -101,32 +92,7 @@ export default function InvoiceForm({
 
   return (
     <div className="space-y-6">
-      {/* Template selection */}
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold">
-          Choose Template
-        </h2>
-
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {templateOptions.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setTemplate(item.id)}
-              className={`rounded-xl border px-3 py-3 text-sm font-medium transition ${
-                template === item.id
-                  ? "border-blue-700 bg-blue-50 text-blue-700 ring-1 ring-blue-700"
-                  : "border-gray-200 text-gray-700 hover:border-gray-400"
-              }`}
-            >
-              {item.name}
-              {template === item.id && (
-                <span className="ml-1">✓</span>
-              )}
-            </button>
-          ))}
-        </div>
-      </section>
+      
 
       {/* Business information */}
       <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
