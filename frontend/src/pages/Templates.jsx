@@ -35,11 +35,16 @@ const sampleInvoice = {
 export const Templates = () => {
   const navigate = useNavigate();
 
-  const handleUseTemplate = (templateId) => {
-    navigate(
-      `/create-invoice?template=${encodeURIComponent(templateId)}`
-    );
-  };
+  
+const handleUseTemplate = (templateId) => {
+  navigate(
+    `/create-invoice?template=${encodeURIComponent(templateId)}`
+  );
+
+  // Scroll to the top
+  window.scrollTo(0, 0);
+};
+
 
   const handlePreview = (templateId) => {
     navigate(
