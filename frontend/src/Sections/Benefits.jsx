@@ -47,14 +47,14 @@ export const Benefits = () => {
   },
 ];
     return (
-        <section className="flex flex-col items-center  bg-gray-100 py-20">
+        <section className="flex flex-col items-center  bg-gray-100 py-20 px-20">
             <p className="font-bold text-blue-600">EVERYTHING YOU NEED</p>
             
-            <h1 className="text-5xl mt-5">Invoicing without the busywork</h1>
+            <h1 className="text-5xl text-center mt-5">Invoicing without the busywork</h1>
 
-            <p className="mt-5">Professional tools that make billing simple, from first draft to final payment.</p>
+            <p className="mt-5 text-center">Professional tools that make billing simple, from first draft to final payment.</p>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mx-40 pt-10">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mx- pt-10">
   {data.map((item) => {
     const Icon = item.icon;
 

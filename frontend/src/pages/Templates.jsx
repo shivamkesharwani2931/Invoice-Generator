@@ -73,7 +73,7 @@ const handleUseTemplate = (templateId) => {
       </header>
 
       {/* Gallery */}
-      <section className="border-y border-gray-300 bg-gray-50 px-5 py-16 md:py-24">
+      <section className="border-y border-gray-300 bg-gray-50 py-16 md:py-24 px-20">
         <div className="mx-auto max-w-7xl">
 
           {/* Section heading */}
