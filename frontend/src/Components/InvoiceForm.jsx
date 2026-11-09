@@ -1,10 +1,9 @@
 
-
-
 const inputClass =
-  "w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100";
+  "box-border block w-full min-w-0 max-w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100";
 
-const labelClass = "mb-1.5 block text-sm font-medium text-gray-700";
+const labelClass =
+  "mb-1.5 block text-sm font-medium text-gray-700";
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat("en-IN", {
@@ -91,18 +90,22 @@ export default function InvoiceForm({
   const total = Math.max(0, subtotal + taxAmount - discount);
 
   return (
-    <div className="space-y-6">
-      
+    <div className="invoice-form space-y-6 w-full min-w-0">
 
-      {/* Business information */}
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      {/* Business Information */}
+      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm min-w-0">
+
         <h2 className="mb-5 text-lg font-semibold">
           Business Information
         </h2>
 
-        <div className="space-y-4">
-          <div>
-            <label className={labelClass}>Business Name</label>
+        <div className="space-y-4 min-w-0">
+
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Business Name
+            </label>
+
             <input
               className={inputClass}
               value={invoice.business.name}
@@ -113,8 +116,11 @@ export default function InvoiceForm({
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Business Email</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Business Email
+            </label>
+
             <input
               type="email"
               className={inputClass}
@@ -126,11 +132,14 @@ export default function InvoiceForm({
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Business Address</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Business Address
+            </label>
+
             <textarea
               rows={2}
-              className={inputClass}
+              className={`${inputClass} resize-y overflow-x-hidden break-words`}
               value={invoice.business.address}
               onChange={(e) =>
                 updateParty("business", "address", e.target.value)
@@ -139,8 +148,11 @@ export default function InvoiceForm({
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Logo URL (optional)</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Logo URL (optional)
+            </label>
+
             <input
               type="url"
               className={inputClass}
@@ -150,22 +162,29 @@ export default function InvoiceForm({
               }
               placeholder="https://example.com/logo.png"
             />
+
             <p className="mt-1 text-xs text-gray-500">
               Use a publicly accessible image URL.
             </p>
           </div>
+
         </div>
       </section>
 
-      {/* Client information */}
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      {/* Client Information */}
+      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm min-w-0">
+
         <h2 className="mb-5 text-lg font-semibold">
           Client Information
         </h2>
 
-        <div className="space-y-4">
-          <div>
-            <label className={labelClass}>Client Name</label>
+        <div className="space-y-4 min-w-0">
+
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Client Name
+            </label>
+
             <input
               className={inputClass}
               value={invoice.client.name}
@@ -176,8 +195,11 @@ export default function InvoiceForm({
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Client Email</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Client Email
+            </label>
+
             <input
               type="email"
               className={inputClass}
@@ -189,11 +211,14 @@ export default function InvoiceForm({
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Client Address</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Client Address
+            </label>
+
             <textarea
               rows={2}
-              className={inputClass}
+              className={`${inputClass} resize-y overflow-x-hidden break-words`}
               value={invoice.client.address}
               onChange={(e) =>
                 updateParty("client", "address", e.target.value)
@@ -201,31 +226,42 @@ export default function InvoiceForm({
               placeholder="Client address"
             />
           </div>
+
         </div>
       </section>
 
-      {/* Invoice details */}
+      {/* Invoice Details */}
       <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
         <h2 className="mb-5 text-lg font-semibold">
           Invoice Details
         </h2>
 
         <div className="space-y-4">
+
           <div>
-            <label className={labelClass}>Invoice Number</label>
+            <label className={labelClass}>
+              Invoice Number
+            </label>
+
             <input
               className={`${inputClass} bg-gray-100`}
               value={invoice.invoiceNumber}
               readOnly
             />
+
             <p className="mt-1 text-xs text-gray-500">
               Draft number. Assign the final unique number on the server.
             </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className={labelClass}>Issue Date</label>
+
+            <div className="min-w-0">
+              <label className={labelClass}>
+                Issue Date
+              </label>
+
               <input
                 type="date"
                 className={inputClass}
@@ -236,8 +272,11 @@ export default function InvoiceForm({
               />
             </div>
 
-            <div>
-              <label className={labelClass}>Due Date</label>
+            <div className="min-w-0">
+              <label className={labelClass}>
+                Due Date
+              </label>
+
               <input
                 type="date"
                 className={inputClass}
@@ -248,14 +287,19 @@ export default function InvoiceForm({
                 }
               />
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Invoice items */}
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      {/* Invoice Items */}
+      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm min-w-0">
+
         <div className="mb-5 flex items-center justify-between gap-3">
-          <h2 className="text-lg font-semibold">Invoice Items</h2>
+
+          <h2 className="text-lg font-semibold">
+            Invoice Items
+          </h2>
 
           <button
             type="button"
@@ -264,15 +308,19 @@ export default function InvoiceForm({
           >
             + Add Item
           </button>
+
         </div>
 
         <div className="space-y-5">
+
           {invoice.items.map((item, index) => (
             <div
               key={item.id}
-              className="rounded-xl border border-gray-200 p-4"
+              className="rounded-xl border border-gray-200 p-4 min-w-0"
             >
+
               <div className="mb-3 flex items-center justify-between">
+
                 <h3 className="text-sm font-semibold">
                   Item {index + 1}
                 </h3>
@@ -285,10 +333,14 @@ export default function InvoiceForm({
                 >
                   Remove
                 </button>
+
               </div>
 
-              <div>
-                <label className={labelClass}>Description</label>
+              <div className="min-w-0">
+                <label className={labelClass}>
+                  Description
+                </label>
+
                 <input
                   className={inputClass}
                   value={item.name}
@@ -300,8 +352,12 @@ export default function InvoiceForm({
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3">
-                <div>
-                  <label className={labelClass}>Quantity</label>
+
+                <div className="min-w-0">
+                  <label className={labelClass}>
+                    Quantity
+                  </label>
+
                   <input
                     type="number"
                     min="0"
@@ -314,8 +370,11 @@ export default function InvoiceForm({
                   />
                 </div>
 
-                <div>
-                  <label className={labelClass}>Rate (₹)</label>
+                <div className="min-w-0">
+                  <label className={labelClass}>
+                    Rate (₹)
+                  </label>
+
                   <input
                     type="number"
                     min="0"
@@ -327,29 +386,37 @@ export default function InvoiceForm({
                     }
                   />
                 </div>
+
               </div>
 
               <div className="mt-3 text-right text-sm font-semibold text-gray-700">
                 Amount:{" "}
                 {formatCurrency(
                   Math.max(0, Number(item.qty) || 0) *
-                    Math.max(0, Number(item.price) || 0)
+                  Math.max(0, Number(item.price) || 0)
                 )}
               </div>
+
             </div>
           ))}
+
         </div>
       </section>
 
-      {/* Tax and discount */}
+      {/* Tax and Discount */}
       <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
         <h2 className="mb-5 text-lg font-semibold">
           Tax & Discount
         </h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className={labelClass}>Tax (%)</label>
+
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Tax (%)
+            </label>
+
             <input
               type="number"
               min="0"
@@ -357,12 +424,17 @@ export default function InvoiceForm({
               step="any"
               className={inputClass}
               value={invoice.tax}
-              onChange={(e) => updateField("tax", e.target.value)}
+              onChange={(e) =>
+                updateField("tax", e.target.value)
+              }
             />
           </div>
 
-          <div>
-            <label className={labelClass}>Discount (₹)</label>
+          <div className="min-w-0">
+            <label className={labelClass}>
+              Discount (₹)
+            </label>
+
             <input
               type="number"
               min="0"
@@ -374,9 +446,11 @@ export default function InvoiceForm({
               }
             />
           </div>
+
         </div>
 
         <div className="mt-6 space-y-3 rounded-xl bg-gray-50 p-4">
+
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Subtotal</span>
             <span>{formatCurrency(subtotal)}</span>
@@ -396,27 +470,34 @@ export default function InvoiceForm({
 
           <div className="flex justify-between border-t border-gray-200 pt-3 text-lg font-bold">
             <span>Total</span>
+
             <span className="text-blue-700">
               {formatCurrency(total)}
             </span>
           </div>
+
         </div>
       </section>
 
       {/* Notes */}
       <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
         <h2 className="mb-4 text-lg font-semibold">
           Notes
         </h2>
 
         <textarea
           rows={4}
-          className={inputClass}
+          className={`${inputClass} resize-y`}
           value={invoice.notes}
-          onChange={(e) => updateField("notes", e.target.value)}
+          onChange={(e) =>
+            updateField("notes", e.target.value)
+          }
           placeholder="Payment instructions, terms, or thank-you message..."
         />
+
       </section>
+
     </div>
   );
 }

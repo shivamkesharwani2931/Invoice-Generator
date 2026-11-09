@@ -1,9 +1,9 @@
 
 import { useRef, useState } from "react";
-import html2pdf from "html2pdf.js";
+import html2canvas from "html2canvas-pro";
+import { jsPDF } from "jspdf";
 
 import { templates } from "../Data/templates";
-
 import "../App.css";
 
 export default function InvoicePreview({
@@ -13,15 +13,12 @@ export default function InvoicePreview({
   const invoiceRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
 
-  // Find selected template
   const selectedTemplate = templates.find(
     (item) => item.id === template
   );
 
-  // Get selected template component
   const SelectedTemplate = selectedTemplate?.Component;
 
-  // Download invoice PDF
   const handleDownload = async () => {
     if (!invoiceRef.current || downloading) return;
 
@@ -30,7 +27,7 @@ export default function InvoicePreview({
     try {
       const element = invoiceRef.current;
 
-      // Wait for images to load
+      // Wait for images
       const images = [...element.querySelectorAll("img")];
 
       await Promise.all(
@@ -44,58 +41,117 @@ export default function InvoicePreview({
         })
       );
 
-      // PDF filename
+      // Wait for fonts
+      if (document.fonts?.ready) {
+        await document.fonts.ready;
+      }
+
+      // Generate canvas
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#ffffff",
+        logging: false,
+        windowWidth: element.scrollWidth,
+      });
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      const margin = 8;
+      const pageWidth = 210;
+      const pageHeight = 297;
+
+      const contentWidth = pageWidth - margin * 2;
+      const contentHeight = pageHeight - margin * 2;
+
+      const imageHeight =
+        (canvas.height * contentWidth) / canvas.width;
+
+      const pageCanvasHeight =
+        (canvas.width * contentHeight) / contentWidth;
+
+      let position = 0;
+      let page = 0;
+
+      while (position < canvas.height) {
+        const sliceHeight = Math.min(
+          pageCanvasHeight,
+          canvas.height - position
+        );
+
+        const pageCanvas = document.createElement("canvas");
+
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = sliceHeight;
+
+        const context = pageCanvas.getContext("2d");
+
+        context.drawImage(
+          canvas,
+          0,
+          position,
+          canvas.width,
+          sliceHeight,
+          0,
+          0,
+          canvas.width,
+          sliceHeight
+        );
+
+        const imageData = pageCanvas.toDataURL("image/jpeg", 0.98);
+
+        if (page > 0) {
+          pdf.addPage();
+        }
+
+        const currentHeight =
+          (sliceHeight * contentWidth) / canvas.width;
+
+        pdf.addImage(
+          imageData,
+          "JPEG",
+          margin,
+          margin,
+          contentWidth,
+          currentHeight
+        );
+
+        position += sliceHeight;
+        page++;
+      }
+
       const fileName = String(
         invoice?.invoiceNumber || "INV-DRAFT"
       ).replace(/[^a-zA-Z0-9_-]/g, "_");
 
-      await html2pdf()
-        .set({
-          margin: [8, 8, 8, 8],
-          filename: `invoice-${fileName}.pdf`,
+      pdf.save(`invoice-${fileName}.pdf`);
 
-          image: {
-            type: "jpeg",
-            quality: 0.98,
-          },
-
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: "#ffffff",
-            logging: false,
-          },
-
-          jsPDF: {
-            unit: "mm",
-            format: "a4",
-            orientation: "portrait",
-          },
-
-          pagebreak: {
-            mode: ["css", "legacy"],
-          },
-        })
-        .from(element)
-        .save();
     } catch (error) {
       console.error("PDF download failed:", error);
 
       alert(
         error?.message || "Unable to generate invoice PDF."
       );
+
     } finally {
       setDownloading(false);
     }
   };
 
   return (
-    <section className="invoice-preview-container">
+    <section className="invoice-preview-container min-w-0 w-full">
+
       {/* Preview Toolbar */}
       <div className="invoice-preview-toolbar">
+
         <div>
           <h2>Invoice Preview</h2>
+
           <p>
             Template: {selectedTemplate?.name || template}
           </p>
@@ -111,23 +167,27 @@ export default function InvoicePreview({
             ? "Generating PDF..."
             : "Download PDF"}
         </button>
+
       </div>
 
       {/* Invoice Preview */}
       <div className="invoice-preview-canvas">
+
         {SelectedTemplate ? (
-          <div ref={invoiceRef}>
+          <div
+            ref={invoiceRef}
+            className="invoice-document"
+          >
             <SelectedTemplate invoice={invoice} />
           </div>
         ) : (
           <div className="p-6 text-center text-red-600">
             <p>Template not found.</p>
-            <p className="text-sm">
-              Please select a valid invoice template.
-            </p>
           </div>
         )}
+
       </div>
+
     </section>
   );
 }

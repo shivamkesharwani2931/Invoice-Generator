@@ -1,10 +1,12 @@
+
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import InvoiceForm from "../Components/InvoiceForm";
 import InvoicePreview from "../Components/InvoicePreview";
 
 export const CreateInvoice = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const templates = [
@@ -51,26 +53,54 @@ export const CreateInvoice = () => {
   });
 
   return (
-    <main className="min-h-screen bg-gray-50 p-5">
-      <div className="mx-auto max-w-7xl">
-        <h1 className="mb-6 text-3xl font-bold">
-          Create Invoice
-        </h1>
+    <main className="min-h-screen w-full overflow-x-hidden bg-gray-50 p-4 sm:p-5">
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <InvoiceForm
-            invoice={invoice}
-            setInvoice={setInvoice}
-            template={template}
-            setTemplate={setTemplate}
-          />
+      <div className="mx-auto w-full max-w-7xl">
 
-          <InvoicePreview
-            invoice={invoice}
-            template={template}
-          />
+        {/* Header */}
+        <div className="mb-6 flex flex-wrap items-center gap-4">
+
+          {/* Back Button */}
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-100"
+          >
+            <span className="text-lg">←</span>
+            Back
+          </button>
+
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            Create Invoice
+          </h1>
+
         </div>
+
+        {/* Invoice Form and Preview */}
+        <div className="grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8">
+
+          {/* Invoice Form */}
+          <div className="w-full min-w-0">
+            <InvoiceForm
+              invoice={invoice}
+              setInvoice={setInvoice}
+              template={template}
+              setTemplate={setTemplate}
+            />
+          </div>
+
+          {/* Invoice Preview */}
+          <div className="w-full min-w-0">
+            <InvoicePreview
+              invoice={invoice}
+              template={template}
+            />
+          </div>
+
+        </div>
+
       </div>
+
     </main>
   );
 };

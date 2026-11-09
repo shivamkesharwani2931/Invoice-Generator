@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+/* Prevent long text from escaping invoice containers */
+
+.invoice-page,
+.invoice-page * {
+  box-sizing: border-box;
+}
+
+.invoice-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.invoice-page p,
+.invoice-page h1,
+.invoice-page h2,
+.invoice-page h3,
+.invoice-page td,
+.invoice-page span {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  min-width: 0;
+}
