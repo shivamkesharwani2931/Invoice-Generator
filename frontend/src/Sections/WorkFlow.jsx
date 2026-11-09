@@ -17,12 +17,12 @@ export const WorkFlow = () => {
   },
 ];
     return (
-        <section className="flex flex-col items-center py-25">
+        <section className="flex flex-col items-center py-25 mx-20">
             <p className="font-bold text-blue-500 ">HOW IT WORKS</p>
-            <h1 className="text-5xl mt-4">From blank page to paid</h1>
-            <p className="mt-6 text-gray-600">Three simple steps. No spreadsheets, no design skills, no hassle.</p>
+            <h1 className="text-5xl mt-4 text-center">From blank page to paid</h1>
+            <p className="mt-6 text-gray-600 text-center">Three simple steps. No spreadsheets, no design skills, no hassle.</p>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 pt-10">
         {steps.map((step, index) => (
           <div key={step.id} className="relative text-center">
             {/* Number and connector */}

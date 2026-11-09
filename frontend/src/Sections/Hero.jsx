@@ -3,7 +3,7 @@ import { FaArrowRight, FaThLarge, FaCheck, FaBolt } from "react-icons/fa";
 
 export const Hero = () =>   {
   return (
-    <section className="overflow-hidden bg-slate-50 px-6 py-16 md:py-20">
+    <section className="overflow-hidden bg-slate-50 px-6 py-16 md:py-20 flex align-center mx-5">
       <div className="mx-auto grid max-w-5xl items-center gap-16 lg:grid-cols-2">
 
         {/* Left Content */}
