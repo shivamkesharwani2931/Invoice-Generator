@@ -1,9 +1,23 @@
 
 import { FaArrowRight, FaThLarge, FaCheck, FaBolt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export const Hero = () =>   {
+export const Hero = () => {
+  const navigate = useNavigate();
+  const { isAuth } = useSelector((state) => state.user);
+
+  // Redirect based on authentication
+  const handleCreateInvoice = () => {
+    navigate(isAuth ? "/templates" : "/login");
+  };
+
+  const handleExploreTemplates = () => {
+    navigate(isAuth ? "/templates" : "/login");
+  };
+
   return (
-    <section className="overflow-hidden bg-slate-50 px-6 py-16 md:py-20 flex align-center mx-5">
+    <section className="flex mx-5 overflow-hidden bg-slate-50 px-6 py-16 md:py-20">
       <div className="mx-auto grid max-w-5xl items-center gap-16 lg:grid-cols-2">
 
         {/* Left Content */}
@@ -24,15 +38,25 @@ export const Hero = () =>   {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <button className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition duration-300 hover:-translate-y-1 hover:bg-blue-700">
+
+            {/* Create Invoice */}
+            <button
+              onClick={handleCreateInvoice}
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition duration-300 hover:-translate-y-1 hover:bg-blue-700"
+            >
               <FaArrowRight />
               Create your invoice
             </button>
 
-            <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-md hover:shadow-blue-500 hover:text-blue-500">
+            {/* Explore Templates */}
+            <button
+              onClick={handleExploreTemplates}
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:text-blue-500 hover:shadow-md"
+            >
               <FaThLarge />
               Explore templates
             </button>
+
           </div>
 
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-500">
@@ -118,9 +142,9 @@ export const Hero = () =>   {
               <p className="mt-1 text-[10px] text-slate-500">Average payment time</p>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
-}
+};

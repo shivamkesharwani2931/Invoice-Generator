@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
 
+import { configureStore } from "@reduxjs/toolkit";
 import UserReducer from "./User/User";
 
 export const invoiceflow_Store = configureStore({
