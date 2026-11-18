@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.14.0",
     "@tailwindcss/vite": "^4.3.3",
+    "axios": "^1.21.1",
     "html2canvas-pro": "^2.6.4",
     "html2pdf.js": "^0.14.0",
     "lucide-react": "^1.73.0",
