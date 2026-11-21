@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -9,56 +10,38 @@ require("dotenv").config({
   path: ".env.production",
 });
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("JWT_SECRET loaded:", !!process.env.JWT_SECRET);
+
 const Connection = require("./Config/db");
 const apiRoutes = require("./Routes");
 
 const app = express();
 
-// Allowed frontend URLs
 const allowedOrigins = [
-  "https://invoice-generator-lake-phi.vercel.app",
+  "https://invoice-generator-five-ashen.vercel.app",
   "http://localhost:5173",
 ];
 
-// CORS Configuration
-const corsOptions = {
-  origin: function (origin, callback) {
+app.use(cors({
+  origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log("Blocked by CORS:", origin);
-      callback(new Error("Not allowed by CORS"));
+      return callback(null, true);
     }
+
+    console.log("Blocked by CORS:", origin);
+    return callback(new Error("Not allowed by CORS"));
   },
-
   credentials: true,
-
-  methods: [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-  ],
-
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-  ],
-};
-
-// Middleware
-app.use(cors(corsOptions));
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// API Routes
-app.use("/api", apiRoutes);
-
-// Health Check
+// Health check
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -66,10 +49,33 @@ app.get("/", (req, res) => {
   });
 });
 
-// Server Configuration
+// API routes
+app.use("/", apiRoutes);
+
+// Verify that authentication routes are registered
+app.get("/test-auth", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Auth router is mounted",
+    endpoints: [
+      "POST /auth/signup",
+      "POST /auth/login",
+      "GET /auth/me",
+      "POST /auth/logout",
+    ],
+  });
+});
+
+// Handle unknown routes
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route not found: ${req.method} ${req.originalUrl}`,
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
-// Start server after MongoDB connection
 const startServer = async () => {
   try {
     await Connection();
@@ -79,7 +85,6 @@ const startServer = async () => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
-
   } catch (error) {
     console.error("Server startup failed:", error.message);
     process.exit(1);
