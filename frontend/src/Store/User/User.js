@@ -9,6 +9,7 @@ const initialState = {
   isError: false,
   message: "",
   authInitialized: false,
+  authCheckRequestId: null,
 };
 
 // SIGNUP
@@ -106,14 +107,20 @@ const UserReducer = createSlice({
         state.isError = false;
         state.message = "";
       })
+
       .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.isAuth = true;
         state.isError = false;
         state.authInitialized = true;
+
+        // Ignore previous auth checks
+        state.authCheckRequestId = null;
+
         state.message = "Signup successful";
       })
+
       .addCase(signupUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -126,14 +133,20 @@ const UserReducer = createSlice({
         state.isError = false;
         state.message = "";
       })
+
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.isAuth = true;
         state.isError = false;
         state.authInitialized = true;
+
+        // Invalidate older /me requests
+        state.authCheckRequestId = null;
+
         state.message = "Login successful";
       })
+
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -141,22 +154,39 @@ const UserReducer = createSlice({
       })
 
       // CHECK AUTH
-      .addCase(checkAuth.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
+      .addCase(checkAuth.pending, (state, action) => {
+        state.authCheckRequestId = action.meta.requestId;
       })
+
       .addCase(checkAuth.fulfilled, (state, action) => {
+        // Ignore outdated requests
+        if (
+          state.authCheckRequestId !== action.meta.requestId
+        ) {
+          return;
+        }
+
         state.isLoading = false;
         state.user = action.payload;
         state.isAuth = true;
         state.isError = false;
         state.authInitialized = true;
+        state.authCheckRequestId = null;
       })
-      .addCase(checkAuth.rejected, (state) => {
+
+      .addCase(checkAuth.rejected, (state, action) => {
+        // Ignore outdated requests
+        if (
+          state.authCheckRequestId !== action.meta.requestId
+        ) {
+          return;
+        }
+
         state.isLoading = false;
         state.user = null;
         state.isAuth = false;
         state.authInitialized = true;
+        state.authCheckRequestId = null;
       })
 
       // LOGOUT
@@ -164,14 +194,20 @@ const UserReducer = createSlice({
         state.isLoading = true;
         state.isError = false;
       })
+
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.isAuth = false;
         state.isLoading = false;
         state.isError = false;
         state.authInitialized = true;
+
+        // Invalidate pending auth checks
+        state.authCheckRequestId = null;
+
         state.message = "Logout successful";
       })
+
       .addCase(logoutUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
