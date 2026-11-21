@@ -13,8 +13,8 @@ const generateToken = (userId) => {
 
 const cookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "lax",
+  secure: true,
+  sameSite: "none",
   maxAge: 7 * 24 * 60 * 60 * 1000,
   path: "/",
 };
@@ -138,8 +138,8 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
     path: "/",
   });
 
