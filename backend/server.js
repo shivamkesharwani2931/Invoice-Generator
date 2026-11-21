@@ -19,7 +19,7 @@ const apiRoutes = require("./Routes");
 const app = express();
 
 const allowedOrigins = [
-  "https://invoice-generator-ten-lime.vercel.app/",
+  "https://invoice-generator-9qmej6hk3-kesharwanishivam37-8777.vercel.app/",
   "http://localhost:5173",
 ];
 
