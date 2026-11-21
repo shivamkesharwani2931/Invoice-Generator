@@ -1,0 +1,12 @@
+{
+  "rewrites":[
+    {
+      "source":"/auth/:path*",
+      "destination":"https://invoice-generator-backend-qfkl.onrender.com/auth/:auth*"
+    },
+    {
+      "source":"/invoices/:path*",
+      "destination":"https://invoice-generator-backend-qfkl.onrender.com/invoices/:auth*"
+    }
+  ]
+}
