@@ -115,7 +115,7 @@ function Navbar() {
           </div>
 
           <span className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
-            Invoice<span className="text-indigo-600">Pro</span>
+            Invoice<span className="text-indigo-600">Flow</span>
           </span>
         </Link>
 
